@@ -48,6 +48,12 @@ Execute cells top to bottom. Training time depends on your CPU/GPU and batch set
 
 ---
 
+## Credits
+
+This codebase follows the same notebooks and data as the popular mirror [lucko515/tesla-stocks-prediction](https://github.com/lucko515/tesla-stocks-prediction) (originally shared with an MIT license by **Luka Anicin**). I keep a separate remote to that history as `upstream` if you want to compare or pull updates.
+
+---
+
 ## Why this repo exists (for me)
 
 I keep this project around as a **clear, reproducible playground**: one dataset, two implementations, same underlying idea. It’s easy to come back months later and still remember where the “readable” LSTM ends and the “built-in cells” version begins.
