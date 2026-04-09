@@ -1,63 +1,62 @@
-# Predicting Tesla stock prices with RNNs
+# Tesla stock prediction with LSTMs
 
-This is an example on how to use RNNs to predict stock market price.
+A small, notebook-first project where I experiment with **LSTM** networks on **Tesla (TSLA) historical prices**. The goal is to learn how recurrent models behave on real financial time series—not to publish trading signals. Treat every output as **educational**, not investment advice.
 
-I've used LSTM as a type of RNN.
+---
 
-![](lstm_cell.png)
-*This LSTM cell image is from [Colah's blog.](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)*
+## What’s inside
 
-## Dataset
+| Piece | What it does |
+|--------|----------------|
+| [`tesla_stocks.csv`](tesla_stocks.csv) | Daily OHLCV history (**August 2014 → August 2017**), bundled so everything runs offline. |
+| [`tensorflow_lstm.ipynb`](tensorflow_lstm.ipynb) | **Practical track:** TensorFlow’s built-in RNN stack (`BasicLSTMCell`, `dynamic_rnn`, dropout, Adam). This is the version you’d reach for when you want something closer to a standard pipeline. |
+| [`lstm_from_scratch_tensorflow.ipynb`](lstm_from_scratch_tensorflow.ipynb) | **Learning track:** LSTM gates implemented explicitly—great for intuition before leaning on framework shortcuts. |
 
-The dataset used in this project is Tesla stocks history (From August 2014 - August 2017). I have downloaded this file from Google stocks, but you have *csv* file inside the project folder. Name of the file is **tesla_stocks.csv**.
+The model family is **RNN → LSTM** for sequence modeling of prices (scaled inputs, sliding windows, MSE-style training). If you want the intuition behind the cell diagram, [Christopher Olah’s LSTM post](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) is the classic reference.
 
-## Install
+---
 
-### &nbsp;&nbsp;&nbsp; Supported Python version
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Python version used in this project: 3.5+
+## Environment
 
-### &nbsp;&nbsp;&nbsp; Libraries used
+These notebooks were written against the **TensorFlow 1.x** API (`tf.contrib`, `tf.Session`, `tf.placeholder`, …). To run them as-is, use a Python environment with **TensorFlow 1.x** (for example TF 1.15 on a compatible Python). If you only have TensorFlow 2 installed, you’ll need either a separate env or a port of the graph/session code—**they won’t run unchanged on TF2 eager mode**.
 
-> *  [Pandas](http://pandas.pydata.org) 0.18.0
-> *  [Numpy](http://www.numpy.org) 1.10.4
-> *  [Matplotlib](https://matplotlib.org) 1.5.1
-> *  [Scikit-learn](http://scikit-learn.org/stable/) 0.17.1
-> *  [TensorFlow](https://www.tensorflow.org) 1.2.0
+**Typical stack**
 
-## Code
+- Python **3.6+** (3.6–3.8 often pairs well with older TF1 builds)
+- [Jupyter](https://jupyter.org/) or [VS Code](https://code.visualstudio.com/) with the Jupyter extension
+- **NumPy**, **Pandas**, **Matplotlib**, **scikit-learn**, **TensorFlow 1.x**
 
-This project has 2 different implementations.
+Install the pieces you need, then open the repo folder so `tesla_stocks.csv` loads with a plain relative path.
 
-1. Implementation by using Tensorflow built-in RNN functions. This is a version which you would use in an industry. This implementation can be found inside **tensorflow_lstm.ipynb**.
+---
 
-2.  Implementation number 2 has been done without using any high level functions from TensorFlow. This implementation is good for understanding how RNNs are working. This implementations is in file **lstm_from_scratch_tensorflow.ipynb**.
+## How to run
 
-## Run
+From the project root:
 
-To run this project you will need some software, like Anaconda, which provides support for running .ipynb files (Jupyter Notebook).
+```bash
+jupyter notebook tensorflow_lstm.ipynb
+```
 
-After making sure you have that, you can run from a terminal or cmd next lines:
+or, for the from-scratch LSTM:
 
-For the 1st version of the code:
+```bash
+jupyter notebook lstm_from_scratch_tensorflow.ipynb
+```
 
-`ipython notebook tensorflow_lstm.ipynb`
+Execute cells top to bottom. Training time depends on your CPU/GPU and batch settings.
 
-or
+---
 
-`jupyter notebook tensorflow_lstm.ipynb`
+## Why this repo exists (for me)
 
-For the 2nd version of the code:
+I keep this project around as a **clear, reproducible playground**: one dataset, two implementations, same underlying idea. It’s easy to come back months later and still remember where the “readable” LSTM ends and the “built-in cells” version begins.
 
-`ipython notebook lstm_from_scratch_tensorflow.ipynb`
-
-or
-
-`jupyter notebook lstm_from_scratch_tensorflow.ipynb`
-
+---
 
 ## License
 
-IT License
+MIT License
 
 Copyright (c) 2017 Luka Anicin
 
