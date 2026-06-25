@@ -86,18 +86,11 @@ The LSTM achieves **86.1% variance explained** on unseen data, with predictions 
 
 The pipeline follows a seven-step workflow designed to prevent data leakage and produce reliable out-of-sample evaluation.
 
-```mermaid
-flowchart LR
-    A[Raw CSV] --> B[Clean & Sort]
-    B --> C[80/20 Temporal Split]
-    C --> D[MinMax Scale<br/>fit on train only]
-    D --> E[50-day Sliding Windows]
-    E --> F1[Train Simple RNN]
-    E --> F2[Train LSTM]
-    F1 --> G[Evaluate on Test Set]
-    F2 --> G
-    G --> H[Metrics + Plots]
-```
+<p align="center">
+  <img src="docs/images/methodology.png" alt="Model Architecture" width="900"/>
+</p>
+
+<p align="center"><em>Step by Step Workflow.</em></p>
 
 ### Configuration
 
